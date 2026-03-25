@@ -10,29 +10,35 @@ export default function ReplayViewer() {
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
-    <WebView
-          style={styles.container}
-
-          source={{ html: '<h1><center>Hello world</center></h1>' }}
-
-        />
-
-      <Text>Play</Text>
-      <Text>Pause</Text>
-      <Text>Fast forward</Text>
-      <Text>Next play</Text>
-      <Text onPress={() => router.back()}>Back</Text>
+      <WebView
+        style={styles.webView}
+        source={{ uri: 'https://www.duelingbook.com/replay?id=542855-80052265' }}
+      />
+      <View
+        style={styles.controls}
+      >
+        <Text>Play</Text>
+        <Text>Pause</Text>
+        <Text>Fast forward</Text>
+        <Text>Next play</Text>
+        <Text onPress={() => router.back()}>Back</Text>
+      </View>
     </View>
   );
 }
-/** source={{ uri: 'https://www.duelingbook.com/replay?id=542855-80052265' }} */
+
 const styles = StyleSheet.create({
-  container: {
+  webView: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
+  },
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#f0f0f0',
   },
 });
