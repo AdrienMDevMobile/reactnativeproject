@@ -1,5 +1,7 @@
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, StyleSheet } from "react-native";
 import { Link, useRouter } from 'expo-router';
+import { WebView } from 'react-native-webview';
+import Constants from 'expo-constants';
 
 export default function ReplayViewer() {
   const router = useRouter();
@@ -12,6 +14,13 @@ export default function ReplayViewer() {
         alignItems: "center",
       }}
     >
+    <WebView
+          style={styles.container}
+
+          source={{ html: '<h1><center>Hello world</center></h1>' }}
+
+        />
+
       <Text>Play</Text>
       <Text>Pause</Text>
       <Text>Fast forward</Text>
@@ -20,3 +29,10 @@ export default function ReplayViewer() {
     </View>
   );
 }
+/** source={{ uri: 'https://www.duelingbook.com/replay?id=542855-80052265' }} */
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+  },
+});
