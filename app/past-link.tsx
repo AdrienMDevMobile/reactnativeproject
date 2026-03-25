@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Text, TextInput, View } from "react-native";
+import { Link } from 'expo-router';
 
 export default function PastLink() {
 
@@ -26,7 +27,7 @@ export default function PastLink() {
                   borderWidth: 1,
                 }}
         />
-      <Text>Go</Text>
+      <Link href="/replay-viewer">Go</Link>
     </View>
   );
 }

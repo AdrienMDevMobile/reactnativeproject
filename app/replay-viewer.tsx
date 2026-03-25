@@ -1,6 +1,9 @@
 import { Text, TextInput, View } from "react-native";
+import { Link, useRouter } from 'expo-router';
 
 export default function ReplayViewer() {
+  const router = useRouter();
+  
   return (
     <View
       style={{
@@ -13,6 +16,7 @@ export default function ReplayViewer() {
       <Text>Pause</Text>
       <Text>Fast forward</Text>
       <Text>Next play</Text>
+      <Text onPress={() => router.back()}>Back</Text>
     </View>
   );
 }
