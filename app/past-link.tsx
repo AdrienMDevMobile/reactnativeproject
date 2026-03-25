@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { Text, TextInput, View } from "react-native";
 
-export default function Index() {
+export default function PastLink() {
+
+  console.warn('Past link!');
 
     const [url, setText] = useState('');
 
@@ -14,7 +16,7 @@ export default function Index() {
       }}
     >
       <TextInput
-        placeholder="Put DB link here"
+        placeholder="Past DB link here !"
         onChangeText={newText => setText(newText)}
         defaultValue={url}
         style={{

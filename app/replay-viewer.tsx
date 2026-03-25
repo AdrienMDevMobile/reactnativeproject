@@ -9,7 +9,6 @@ export default function ReplayViewer() {
         alignItems: "center",
       }}
     >
-      <TextInput defaultValue = "Put DB link here"/>
       <Text>Play</Text>
       <Text>Pause</Text>
       <Text>Fast forward</Text>
