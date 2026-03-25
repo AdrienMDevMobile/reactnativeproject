@@ -2,9 +2,43 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-nativ
 import { Link, useRouter } from 'expo-router';
 import { WebView } from 'react-native-webview';
 import Constants from 'expo-constants';
+import React from 'react';
 
 export default function ReplayViewer() {
   const router = useRouter();
+  const webViewRef = React.useRef(null);
+  
+  const injectPlay = () => {
+    if (webViewRef.current) {
+      webViewRef.current.injectJavaScript(
+        'document.getElementById("play_btn").click();'
+      );
+    }
+  };
+  
+  const injectPause = () => {
+    if (webViewRef.current) {
+      webViewRef.current.injectJavaScript(
+        'document.getElementById("pause_replay_btn").click();'
+      );
+    }
+  };
+  
+  const injectFastForward = () => {
+    if (webViewRef.current) {
+      webViewRef.current.injectJavaScript(
+        'document.getElementById("fast_btn").click();'
+      );
+    }
+  };
+  
+  const injectNextPlay = () => {
+    if (webViewRef.current) {
+      webViewRef.current.injectJavaScript(
+        'document.getElementById("next_btn").click();'
+      );
+    }
+  };
   
   return (
     <View
@@ -13,22 +47,23 @@ export default function ReplayViewer() {
       }}
     >
       <WebView
+        ref={webViewRef}
         style={styles.webView}
         source={{ uri: 'https://www.duelingbook.com/replay?id=542855-80052265' }}
       />
       <View
         style={styles.controls}
       >
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Play pressed')}>
+        <TouchableOpacity style={styles.button} onPress={injectPlay}>
           <Text style={styles.buttonText}>Play</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Pause pressed')}>
+        <TouchableOpacity style={styles.button} onPress={injectPause}>
           <Text style={styles.buttonText}>Pause</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Fast forward pressed')}>
+        <TouchableOpacity style={styles.button} onPress={injectFastForward}>
           <Text style={styles.buttonText}>Fast forward</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Next play pressed')}>
+        <TouchableOpacity style={styles.button} onPress={injectNextPlay}>
           <Text style={styles.buttonText}>Next play</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => router.back()}>
