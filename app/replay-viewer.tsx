@@ -7,44 +7,53 @@ import React from 'react';
 export default function ReplayViewer() {
   const router = useRouter();
   const webViewRef = React.useRef(null);
+
+  const injectAction = (toClick) => {
+      if (webViewRef.current) {
+                                             webViewRef.current.injectJavaScript(
+                                               'document.getElementById("' + toClick + '").click();'
+                                             );
+                                           }
+                                         };
   
   const injectPlay = () => {
-    if (webViewRef.current) {
-      webViewRef.current.injectJavaScript(
-        'document.getElementById("play_btn").click();'
-      );
-    }
+      injectAction("play_btn")
   };
   
   const injectPause = () => {
-    if (webViewRef.current) {
-      webViewRef.current.injectJavaScript(
-        'document.getElementById("pause_replay_btn").click();'
-      );
-    }
+      injectAction("pause_replay_btn")
+
   };
   
   const injectFastForward = () => {
-    if (webViewRef.current) {
-      webViewRef.current.injectJavaScript(
-        'document.getElementById("fast_btn").click();'
-      );
-    }
+      injectAction("fast_btn")
   };
   
   const injectNextPlay = () => {
-    if (webViewRef.current) {
-      webViewRef.current.injectJavaScript(
-        'document.getElementById("next_btn").click();'
-      );
-    }
+      injectAction("next_btn")
   };
-  
-  return (
-    <View
-      style={{
-        flex: 1,
-      }}
+
+  const injectHideHand = () => {
+      injectAction("show_rb")
+  };
+
+const injectShowHand = () => {
+      injectAction("show1_rb")
+  };
+
+const injectShowBoth = () => {
+      injectAction("show2_rb")
+  };
+
+
+
+      return (
+        <View
+          style={{
+            flex: 1,
+          }
+    }
+
     >
       <WebView
         ref={webViewRef}
@@ -54,20 +63,32 @@ export default function ReplayViewer() {
       <View
         style={styles.controls}
       >
-        <TouchableOpacity style={styles.button} onPress={injectPlay}>
-          <Text style={styles.buttonText}>Play</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={injectPause}>
-          <Text style={styles.buttonText}>Pause</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={injectFastForward}>
-          <Text style={styles.buttonText}>Fast forward</Text>
-        </TouchableOpacity>
+      <View
+          style={{flexDirection: 'row', padding: 5  }}>
+            <TouchableOpacity style={styles.button} onPress={injectPlay}>
+              <Text style={styles.smallButtonText}>Play</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={injectPause}>
+              <Text style={styles.smallButtonText}>Pause</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={injectFastForward}>
+              <Text style={styles.smallButtonText}>Fast forward</Text>
+            </TouchableOpacity>
+        </View>
+              <View
+                  style={{flexDirection: 'row', padding: 5  }}>
+                    <TouchableOpacity style={styles.button} onPress={injectHideHand}>
+                      <Text style={styles.smallButtonText}>Hide</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={injectShowHand}>
+                      <Text style={styles.smallButtonText}>Show</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={injectShowBoth}>
+                      <Text style={styles.smallButtonText}>Both</Text>
+                    </TouchableOpacity>
+                </View>
         <TouchableOpacity style={styles.button} onPress={injectNextPlay}>
-          <Text style={styles.buttonText}>Next play</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => router.back()}>
-          <Text style={styles.buttonText}>Back</Text>
+          <Text style={styles.bigButtonText}>Next play</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -94,9 +115,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 150,
   },
-  buttonText: {
+  smallButtonText: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 12,
     textAlign: 'center',
+  },
+  bigButtonText: {
+      color: 'black',
+      fontSize: 20,
+      textAlign: 'center',
+      padding: 10
   },
 });
