@@ -51,13 +51,12 @@ const injectShowBoth = () => {
 
 
 
-      return (
-        <View
-          style={{
-            flex: 1,
-          }
-    }
-
+  return (
+    <View
+      style={{
+        flex: 1,
+        }
+      }
     >
       <WebView
         ref={webViewRef}
@@ -67,30 +66,30 @@ const injectShowBoth = () => {
       <View
         style={styles.controls}
       >
-      <View
-          style={{flexDirection: 'row', padding: 5  }}>
-            <TouchableOpacity style={styles.button} onPress={injectPlay}>
-              <Text style={styles.smallButtonText}>Play</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={injectPause}>
-              <Text style={styles.smallButtonText}>Pause</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={injectFastForward}>
-              <Text style={styles.smallButtonText}>Fast forward</Text>
-            </TouchableOpacity>
-        </View>
-              <View
-                  style={{flexDirection: 'row', padding: 5  }}>
-                    <TouchableOpacity style={styles.button} onPress={injectHideHand}>
-                      <Text style={styles.smallButtonText}>Hide</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={injectShowHand}>
-                      <Text style={styles.smallButtonText}>Show</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={injectShowBoth}>
-                      <Text style={styles.smallButtonText}>Both</Text>
-                    </TouchableOpacity>
-                </View>
+          <View
+              style={{flexDirection: 'row', padding: 5  }}>
+                <TouchableOpacity style={styles.button} onPress={injectHideHand}>
+                  <Text style={styles.smallButtonText}>Hide</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={injectShowHand}>
+                  <Text style={styles.smallButtonText}>Show</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={injectShowBoth}>
+                  <Text style={styles.smallButtonText}>Both</Text>
+                </TouchableOpacity>
+            </View>
+                  <View
+                      style={{flexDirection: 'row', padding: 5  }}>
+                        <TouchableOpacity style={styles.button} onPress={injectPlay}>
+                          <Text style={styles.smallButtonText}>Play</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={injectPause}>
+                          <Text style={styles.smallButtonText}>Pause</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={injectFastForward}>
+                          <Text style={styles.smallButtonText}>Fast forward</Text>
+                        </TouchableOpacity>
+                    </View>
         <TouchableOpacity style={styles.button} onPress={injectNextPlay}>
           <Text style={styles.bigButtonText}>Next play</Text>
         </TouchableOpacity>
