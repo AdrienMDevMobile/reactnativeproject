@@ -4,8 +4,6 @@ import { Link } from 'expo-router';
 
 export default function PastLink() {
 
-  console.warn('Past link!');
-
     const [url, setText] = useState('');
 
   return (
