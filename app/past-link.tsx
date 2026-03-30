@@ -27,7 +27,11 @@ export default function PastLink() {
                   borderWidth: 1,
                 }}
         />
-      <Link href="/replay-viewer">Go</Link>
+      <Link href={{
+          pathname: '/replay-viewer',
+          params: { url: url }
+        }}
+      >Go</Link>
     </View>
   );
 }

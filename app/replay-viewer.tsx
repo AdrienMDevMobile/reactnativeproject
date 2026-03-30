@@ -1,20 +1,24 @@
 import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
-import { Link, useRouter } from 'expo-router';
+import { useGlobalSearchParams } from 'expo-router';
 import { WebView } from 'react-native-webview';
 import Constants from 'expo-constants';
 import React from 'react';
 
 export default function ReplayViewer() {
-  const router = useRouter();
-  const webViewRef = React.useRef(null);
+
+    const {
+        url,
+      } = useGlobalSearchParams<{ url?: string }>();
+
+ const webViewRef = React.useRef(null);
 
   const injectAction = (toClick) => {
       if (webViewRef.current) {
-                                             webViewRef.current.injectJavaScript(
-                                               'document.getElementById("' + toClick + '").click();'
-                                             );
-                                           }
-                                         };
+         webViewRef.current.injectJavaScript(
+           'document.getElementById("' + toClick + '").click();'
+         );
+       }
+     };
   
   const injectPlay = () => {
       injectAction("play_btn")
@@ -58,7 +62,7 @@ const injectShowBoth = () => {
       <WebView
         ref={webViewRef}
         style={styles.webView}
-        source={{ uri: 'https://www.duelingbook.com/replay?id=542855-80052265' }}
+        source={{ uri: url }}
       />
       <View
         style={styles.controls}
